@@ -1,21 +1,17 @@
 <script setup lang="ts">
+import PokemonCard from '@/components/PokemonCard.vue'
+import PokemonLoading from '@/components/PokemonLoading.vue'
 import { POKEMON_API } from '@/constant'
 import { getRandomPokemonId, decimetreToMeter, hectogramToKilogram } from '@/helper'
+import type { Pokemon } from '@/type'
 import { ref } from 'vue'
-
-type Pokemon = {
-  id: number
-  name: string
-  frontDefault: string
-  weight: number
-  height: number
-}
 
 const searchValue = ref<string>()
 const pokemon = ref<Pokemon | null>()
 
 async function getPokemon() {
   console.log('getting pokemon info')
+  pokemon.value = null
   const res = await fetch(POKEMON_API + `pokemon/${getRandomPokemonId()}`)
   const json = await res.json()
   console.log(json)
@@ -29,34 +25,35 @@ async function getPokemon() {
   pokemon.value = pokemonInfo
 }
 
-getPokemon();
+// getPokemon()
 </script>
 
 <template>
-  <main class="w-screen">
-    <div class="flex gap-2 items-center w-4/5 mx-auto">
+  <main class="container w-[300px] h-screen flex-col flex">
+    <div class="flex gap-2 items-center w-4/5 mx-auto mt-8">
       <input
         v-model="searchValue"
         placeholder="Pikachu"
         class="px-2 py-1 rounded-sm outline-none w-full"
       />
-      <button @click="getPokemon">
-        <v-icon name="fc-search" scale="1.5" />
-      </button>
     </div>
-    <div v-if="pokemon" class="flex-col flex items-center my-4">
-      <img v-bind:src="pokemon.frontDefault" width="200" height="200" alt="pokemon image" />
-      <h1 class="text-white font-bold uppercase">{{ pokemon.name }}</h1>
-      <table class="w-full my-2 text-white">
-        <tr>
-          <th>Height</th>
-          <td style="text-align: center;">{{ decimetreToMeter(pokemon.height) + 'm' }}</td>
-        </tr>
-        <tr>
-          <th >Weight</th>
-          <td style="text-align: center;">{{ hectogramToKilogram(pokemon.weight) + 'Kg' }}</td>
-        </tr>
-      </table>
-    </div>
+    <Transition v-if="pokemon"  name="fade">
+      <PokemonCard v-bind="pokemon" />
+    </Transition>
+    <Transition v-else>
+      <PokemonLoading/>
+    </Transition>
   </main>
 </template>
+
+<style>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>
