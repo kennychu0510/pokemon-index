@@ -20,12 +20,13 @@ async function getPokemon() {
     name: json.name,
     frontDefault: json.sprites.front_default,
     height: json.height,
-    weight: json.weight
+    weight: json.weight,
+    types: json.types
   }
   pokemon.value = pokemonInfo
 }
 
-// getPokemon()
+getPokemon()
 </script>
 
 <template>
@@ -46,7 +47,7 @@ async function getPokemon() {
   </main>
 </template>
 
-<style>
+<style scoped>
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.5s ease;
