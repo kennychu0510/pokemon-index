@@ -61,7 +61,7 @@ getPokemon()
 </script>
 
 <template>
-  <main class="container w-[250px] h-screen flex-col flex">
+  <main class="container w-[250px] flex-col flex">
     <Transition v-if="pokemon" name="fade">
       <PokemonCard v-bind="pokemon" />
     </Transition>
@@ -88,5 +88,9 @@ getPokemon()
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
+}
+
+main {
+  height: 100dvh;
 }
 </style>
