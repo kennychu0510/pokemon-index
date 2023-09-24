@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 const { type } = defineProps<{ type: string }>()
-// const src = 
 const imageSrc = `/src/assets/images/types/${type}.png`
 </script>
 

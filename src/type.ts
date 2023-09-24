@@ -4,6 +4,7 @@ export type Pokemon = {
   frontDefault: string
   weight: number
   height: number
+  generation: string;
   types: {
     slot: number,
     type: {
@@ -11,4 +12,14 @@ export type Pokemon = {
       url: string;
     }
   }[]
+}
+
+export type LocalPokemon = {
+  index: string;
+  imageSrc: string;
+  englishName: string;
+  traditionalChinese: string;
+  simplifiedChinese: string;
+  hkName: string;
+  generation: string;
 }

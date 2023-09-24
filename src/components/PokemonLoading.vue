@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="flex justify-center items-center h-1/2 spin">
+  <div class="flex justify-center items-center spin flex-1">
     <img src="../assets/images/pokeball.png" alt="loading pokeball" width="150" height="150" />
   </div>
 </template>
