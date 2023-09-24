@@ -18,7 +18,3 @@ export function getImgSrc(value: string, forDetail?: boolean) {
   }
   return 'https://' + value.slice(2)
 }
-
-export function getImgTypeUrl(type: string) {
-  return require(`./assets/images/types/${type}.png`)
-}

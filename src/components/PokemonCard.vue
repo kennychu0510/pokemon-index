@@ -36,10 +36,10 @@ const chinese = localPokemon?.simplifiedChinese === '-' ? '' : localPokemon?.tra
         </th>
       </tr>
     </table>
-    <!-- <div class="flex flex-row gap-8">
+    <div class="flex flex-row gap-8">
       <div v-for="type in pokemon.types">
         <PokemonType :type="type.type.name" />
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
